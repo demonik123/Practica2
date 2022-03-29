@@ -33,7 +33,7 @@
             <input type="submit" value="Enviar">
         </form>
         <br>
-        <a href="ProcesaServlet">Vaciar Tareas</a>
+        <a href="ProcesaServlet?op=elim1">Vaciar Tareas</a>
         
         <table border="1">
             <th>ID</th>
@@ -58,7 +58,7 @@
                         <%
                             }
                         %>           
-                        <td><a href="">Eliminar</a></td>
+                        <td><a href="ProcesaServlet?op=elim&id=<%=lista.get(i).getId()%>">Eliminar</a></td>
                     </tr>
             <%
                 }

@@ -36,10 +36,24 @@ public class ProcesaServlet extends HttpServlet {
     throws ServletException, IOException {
         //obtener acceso al objeto session
         HttpSession ses = request.getSession();
-        //se elimina la sesión
-        ses.invalidate();
-        //transfiere el control a index.jsp
-        response.sendRedirect("index.jsp");
+        ArrayList<Tareas> lista = (ArrayList<Tareas>) ses.getAttribute("lista");
+        String id = request.getParameter("id");
+        String op = request.getParameter("op");
+        //PrintWriter out = response.getWriter();
+        //out.print("id:"+id + "   operacion:"+op);
+        if (op.equals("elim")) {
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).getId().equals(id)) {
+                    lista.remove(i);
+                    response.sendRedirect("tarea.jsp");
+                }
+            }  
+        }else{
+            //se elimina la sesión
+            ses.invalidate();
+            //transfiere el control a index.jsp
+            response.sendRedirect("tarea.jsp");
+        }  
     }
 
     @Override
